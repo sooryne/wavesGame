@@ -14,7 +14,7 @@ public class GameManeger : MonoBehaviour {
 		RESTART,
 		QUIT,
 	}
-	GAMESTATE state = GAMESTATE.NONE;
+	public GAMESTATE state = GAMESTATE.NONE;
 
 	void Start () {
 		state = GAMESTATE.START;
