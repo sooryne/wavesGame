@@ -1,4 +1,6 @@
 # wavesGame
 ## これは何
-GGJSeika　でteam-cが製作中のゲームです。
-#GGJSeika
+GGJSeikaでteam-cが製作中のゲームです。
+
+# 暇なので追記していきます
+## 
