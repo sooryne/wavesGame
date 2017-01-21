@@ -211,6 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394aba7df91bd4d8ebebea0016e0ff4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+  slope: 2
 --- !u!23 &744115249
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -313,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ef3e48056c74282a5635e31c458086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
 --- !u!1 &1553545633
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +422,7 @@ GameObject:
   - component: {fileID: 1881690666}
   - component: {fileID: 1881690665}
   m_Layer: 0
-  m_Name: GameManeger
+  m_Name: GameSystemBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e66a671c779444478606a69d1487db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: -1
 --- !u!4 &1881690666
 Transform:
   m_ObjectHideFlags: 0

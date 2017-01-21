@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManeger : MonoBehaviour {
+public class StateManeger : MonoBehaviour {
 
 // ステートの定義
 	public enum GAMESTATE{
@@ -22,14 +23,15 @@ public class GameManeger : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// 一度だけ実行
+		if (state == GAMESTATE.START){
+			SceneManager.LoadScene("ship test");
+		}
 		// ステート遷移＋初期化フェイズ
 		switch(state){
 			case GAMESTATE.START:
 			{
-				// 左クリックで開始
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.PLAY;
-				}
+				state = GAMESTATE.PLAY;
 			}
 			break;
 			case GAMESTATE.PLAY:
@@ -81,7 +83,7 @@ public class GameManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				
+
 			}
 			break;
 			case GAMESTATE.PLAY:
