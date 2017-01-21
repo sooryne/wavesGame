@@ -25,7 +25,7 @@ public class BulletMaker : MonoBehaviour {
         if (Input.GetMouseButton(0))
         {
             //左ボタンが離れるタイミングを取得
-            if (Input.GetMouseButton(0) && isReady == true)
+            if (Input.GetMouseButton(1) && isReady == true)
             {
                 isReady = false;
 
