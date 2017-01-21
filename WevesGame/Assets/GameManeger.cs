@@ -5,41 +5,113 @@ using UnityEngine;
 public class GameManeger : MonoBehaviour {
 
 // ステートの定義
-	public enum GameState{
-		None = -1,
-		Start,
-		Play,
-		Clear,
-		Gameover,
+	public enum GAMESTATE{
+		NONE = -1,
+		START,
+		PLAY,
+		CLEAR,
+		GAMEOVER,
+		RESTART,
+		QUIT,
 	}
-	GameState state = GameState.None;
+	GAMESTATE state = GAMESTATE.NONE;
 
 	void Start () {
-		state = GameState.Start;
+		state = GAMESTATE.START;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		// ステート遷移+実行フェイズ
+		// ステート遷移＋初期化フェイズ
 		switch(state){
-			case GameState.Start:
-			break;
-			case GameState.Play:
-			break;
-			case GameState.Clear:
-			break;
-			case GameState.Gameover:
-			break;
+			case GAMESTATE.START:
+			{
+				// key 入力を受け付ける
+				// 左クリックで開始
+				if(Input.GetMouseButton(0)){
+					state = GAMESTATE.PLAY;
+				}
 			}
+			break;
+			case GAMESTATE.PLAY:
+			{
+				// play
+				if(Input.GetMouseButton(0)){
+					state = GAMESTATE.CLEAR;
+				}else if(Input.GetMouseButton(1)){
+					state = GAMESTATE.GAMEOVER;
+				}
+			}
+			break;
+			case GAMESTATE.CLEAR:
+			{
+				// clearシーン
+				if(Input.GetMouseButton(0)){
+					state = GAMESTATE.RESTART;
+				}else if(Input.GetMouseButton(1)){
+					state = GAMESTATE.QUIT;
+				}
+			}
+			break;
+			case GAMESTATE.GAMEOVER:
+			{
+				// Gameoverシーン
+				if(Input.GetMouseButton(0)){
+					state = GAMESTATE.RESTART;
+				}else if(Input.GetMouseButton(1)){
+					state = GAMESTATE.QUIT;
+				}
+			}
+			break;
+			case GAMESTATE.RESTART:
+			{
+				// リスタート
+				if(Input.GetMouseButton(0)){
+					state = GAMESTATE.PLAY;
+				}
+			}
+			break;
+			case GAMESTATE.QUIT:
+			{
+				// ゲーム終了
+			}
+			break;
+		}
 		// 実行フェイズ
 		switch(state){
-			case GameState.Start:
+			case GAMESTATE.START:
+			{
+				// スタート画面
+				Debug.Log("Start");
+			}
 			break;
-			case GameState.Play:
+			case GAMESTATE.PLAY:
+			{
+				// play
+				Debug.Log("Play");
+			}
 			break;
-			case GameState.Clear:
+			case GAMESTATE.CLEAR:
+			{
+				// clearシーンの表示
+				Debug.Log("Clear");
+			}
 			break;
-			case GameState.Gameover:
+			case GAMESTATE.GAMEOVER:
+			{
+				// Gameoverシーン
+				Debug.Log("Gameover");
+			}
+			break;
+			case GAMESTATE.RESTART:
+			{
+				Debug.Log("Restart");
+			}
+			break;
+			case GAMESTATE.QUIT:
+			{
+				Debug.Log("Quit");
+			}
 			break;
 		}
 	}
