@@ -18,59 +18,43 @@ public class StateManeger : MonoBehaviour {
 	public GAMESTATE state = GAMESTATE.NONE;
 
 	void Start () {
-		state = GAMESTATE.START;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		// 一度だけ実行
-		if (state == GAMESTATE.START){
-			SceneManager.LoadScene("ship test");
+		// 一度だけ実行…どのように実装しようかしら
+		if (state == GAMESTATE.NONE){
+			if (Input.GetMouseButtonDown(0)) {
+				Debug.Log("シーン読み込み");
+				SceneManager.LoadScene("ship test");
+				state = GAMESTATE.START;
+			}
 		}
 		// ステート遷移＋初期化フェイズ
 		switch(state){
 			case GAMESTATE.START:
 			{
-				state = GAMESTATE.PLAY;
+
 			}
 			break;
 			case GAMESTATE.PLAY:
 			{
 				// play
-				// クリックで挙動を変える
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.CLEAR;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.GAMEOVER;
-				}
 			}
 			break;
 			case GAMESTATE.CLEAR:
 			{
-				// clearシーン
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.RESTART;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.QUIT;
-				}
+				// clear
 			}
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
 				// Gameoverシーン
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.RESTART;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.QUIT;
-				}
 			}
 			break;
 			case GAMESTATE.RESTART:
 			{
 				// リスタート
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.PLAY;
-				}
 			}
 			break;
 			case GAMESTATE.QUIT:
@@ -83,7 +67,7 @@ public class StateManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-
+				Debug.Log("start");
 			}
 			break;
 			case GAMESTATE.PLAY:
