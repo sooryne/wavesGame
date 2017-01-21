@@ -82,8 +82,8 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
-				// Gameoverシーン
-				Debug.Log("Gameover");
+				// Gameoverシーンを読み込む
+				SceneManager.LoadScene("GameoverScene");
 			}
 			break;
 			case GAMESTATE.RESTART:
