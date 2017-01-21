@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManeger : MonoBehaviour {
+public class StateManeger : MonoBehaviour {
 
 // ステートの定義
 	public enum GAMESTATE{
@@ -22,7 +22,7 @@ public class GameManeger : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// ステート遷移＋初期化フェイズ
+			// ステート遷移＋初期化フェイズ
 		switch(state){
 			case GAMESTATE.START:
 			{
