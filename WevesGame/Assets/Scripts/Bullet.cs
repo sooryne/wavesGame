@@ -4,45 +4,49 @@ using UnityEngine;
 using DG.Tweening;
 
 public class Bullet : MonoBehaviour {
-    public GameObject bullet;
-    [SerializeField] GameObject Cannon;
-    private Transform muzzle;
-    public float speed = 1000;
+    private Vector3 Hitpoint;
+    private GameObject target;
 
-    float x;
-    float y;
-    float z;
+    float hitPointx;
+    float hitPointy;
+    float hitPointz;
 
     void Start()
     {
-
+       
     }
 
     // Use this for initialization
     void Awake () {
 
-        Vector3 vecMouse = Input.mousePosition;
-        Vector3 screenPos = Camera.main.ScreenToWorldPoint(vecMouse);
+        target = GameObject.Find("Target");
+        Vector3 Hitpoint = target.GetComponent<Transform>().position;
 
-        Debug.Log(screenPos);
+        Debug.Log(Hitpoint);
+        Debug.Log(Hitpoint.x);
 
-        screenPos.x = x;
-        screenPos.y = y;
-        screenPos.z = z;
+        //取得したhitpointの座標に2秒間かけて弾を移動
+        gameObject.GetComponent<Transform>().DOMove(new Vector3 (Hitpoint.x, Hitpoint.y, Hitpoint.z), 2f);
 
-        gameObject.GetComponent<Transform>().DOMove(new Vector3 (x,y,z), 2f);
-        //gameObject.GetComponent<Transform>().DOMove(new Vector3 (0,0,0), 2f);
-
-        Invoke("DestroyBullet", 1.8f);
 
     }
 
     // Update is called once per frame
     void Update () {
+
+        //水面に着弾した瞬間(=Yが０になった瞬間)の判定。
+        if (this.transform.position.y > -0.5f && this.transform.position.y < 0.5f) {
+            //着弾する瞬間に弾を削除する。
+            Invoke("DestroyBullet", 0.1f);
+
+        } 
 		
 	}
 
+    //着弾した瞬間にBulletを削除し波紋を生成する。
     void DestroyBullet() {
+        GameObject prefab = (GameObject)Resources.Load("Prefabs/Wave");
+        Instantiate(prefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
 
     }
