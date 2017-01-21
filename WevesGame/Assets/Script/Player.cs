@@ -12,7 +12,8 @@ public class Player : MonoBehaviour {
 	private int flashCount = 0;			// 点滅カウント
 	private int inputMuki = 0;			// 0:Up 1:Down 2:Left 3:Right
 
-	public float speed = 2;
+	public float speed = 2;				// 移動スピード
+	public float slope = 2;				// 傾き
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour {
 	// 移動
 	void Move () {
 		// 前
-		if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow) || 0 < Input.GetAxisRaw("Vertical")) {
+		if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow) || 0 < Input.GetAxisRaw ("Vertical")) {
 			inputMuki = 0;
 			rigidBody.velocity = new Vector3 (rigidBody.velocity.x, rigidBody.velocity.y, speed);
 		}
@@ -48,11 +49,28 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.LeftArrow) || Input.GetAxisRaw("Horizontal") < 0) {
 			inputMuki = 2;
 			rigidBody.velocity = new Vector3 (-speed, rigidBody.velocity.y, rigidBody.velocity.z);
+			// 傾ける
+			transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, slope);
+			// カメラが傾くのを防止
+
+		} else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) {
+			// 傾きを戻す
+			transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
 		}
 		// 右
 		if (Input.GetKey (KeyCode.D) || Input.GetKey (KeyCode.RightArrow) || 0 < Input.GetAxisRaw("Horizontal")) {
 			inputMuki = 3;
 			rigidBody.velocity = new Vector3 (speed, rigidBody.velocity.y, rigidBody.velocity.z);
+			// 傾ける
+			transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -slope);
+		} else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) {
+			// 傾きを戻す
+			transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+		}
+
+		if (Input.GetAxisRaw("Horizontal") == 0) {
+			// 傾きを戻す
+			transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
 		}
 	}
 
