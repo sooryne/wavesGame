@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StateManeger : MonoBehaviour {
 
@@ -17,58 +18,41 @@ public class StateManeger : MonoBehaviour {
 	public GAMESTATE state = GAMESTATE.NONE;
 
 	void Start () {
-		state = GAMESTATE.START;
 	}
 
 	// Update is called once per frame
 	void Update () {
-			// ステート遷移＋初期化フェイズ
+		if(state == GAMESTATE.NONE){
+			if(Input.GetMouseButtonDown(0)){
+			SceneManager.LoadScene("ship test");
+			state = GAMESTATE.START;
+			}
+		}
+		// ステート遷移＋初期化フェイズ
 		switch(state){
 			case GAMESTATE.START:
 			{
-				// 左クリックで開始
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.PLAY;
-				}
+			
 			}
 			break;
 			case GAMESTATE.PLAY:
 			{
 				// play
-				// クリックで挙動を変える
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.CLEAR;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.GAMEOVER;
-				}
 			}
 			break;
 			case GAMESTATE.CLEAR:
 			{
 				// clearシーン
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.RESTART;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.QUIT;
-				}
 			}
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
 				// Gameoverシーン
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.RESTART;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.QUIT;
-				}
 			}
 			break;
 			case GAMESTATE.RESTART:
 			{
 				// リスタート
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.PLAY;
-				}
 			}
 			break;
 			case GAMESTATE.QUIT:
