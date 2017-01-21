@@ -26,7 +26,6 @@ public class GameManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				// key 入力を受け付ける
 				// 左クリックで開始
 				if(Input.GetMouseButton(0)){
 					state = GAMESTATE.PLAY;
