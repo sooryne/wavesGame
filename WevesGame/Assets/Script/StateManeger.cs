@@ -23,7 +23,7 @@ public class StateManeger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(state == GAMESTATE.NONE){
-			if(Input.GetMouseButtonDown(0)){
+			if(Input.GetKeyDown(KeyCode.Space)){
 			SceneManager.LoadScene("ship test");
 			state = GAMESTATE.START;
 			}
@@ -82,8 +82,8 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
-				// Gameoverシーン
-				Debug.Log("Gameover");
+				// Gameoverシーンを読み込む
+				SceneManager.LoadScene("GameoverScene");
 			}
 			break;
 			case GAMESTATE.RESTART:

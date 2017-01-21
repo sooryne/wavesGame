@@ -15,10 +15,15 @@ public class Player : MonoBehaviour {
 	public float speed = 2;				// 移動スピード
 	public float slope = 2;				// 傾き
 
+	GameObject go;
+	StateManeger sManeger;
+
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
 		playerCollider = GetComponent<BoxCollider> ();
+		go = GameObject.Find("GameSystemBox");
+		sManeger = (StateManeger)(go.GetComponent<StateManeger> ());
 	}
 	
 	// Update is called once per frame
@@ -31,6 +36,8 @@ public class Player : MonoBehaviour {
 		// damage
 		if (damageflag) {
 			Damage();
+			// yt 
+			sManeger.state = StateManeger.GAMESTATE.GAMEOVER;
 		}
 	}
 
