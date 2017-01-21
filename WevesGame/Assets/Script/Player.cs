@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
 		playerCollider = GetComponent<BoxCollider> ();
+		
 	}
 	
 	// Update is called once per frame
