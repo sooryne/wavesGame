@@ -81,8 +81,7 @@ public class GameManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				// スタート画面
-				Debug.Log("Start");
+				
 			}
 			break;
 			case GAMESTATE.PLAY:
