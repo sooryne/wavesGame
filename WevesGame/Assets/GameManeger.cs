@@ -35,6 +35,7 @@ public class GameManeger : MonoBehaviour {
 			case GAMESTATE.PLAY:
 			{
 				// play
+				// クリックで挙動を変える
 				if(Input.GetMouseButton(0)){
 					state = GAMESTATE.CLEAR;
 				}else if(Input.GetMouseButton(1)){
