@@ -19,7 +19,6 @@ public class Player : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
 		playerCollider = GetComponent<BoxCollider> ();
-		
 	}
 	
 	// Update is called once per frame
@@ -51,8 +50,6 @@ public class Player : MonoBehaviour {
 			rigidBody.velocity = new Vector3 (-speed, rigidBody.velocity.y, rigidBody.velocity.z);
 			// 傾ける
 			transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, slope);
-			// カメラが傾くのを防止
-
 		} else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) {
 			// 傾きを戻す
 			transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
