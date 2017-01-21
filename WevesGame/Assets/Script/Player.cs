@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
 
 	Rigidbody rigidBody;
 	BoxCollider playerCollider;
+	GameObject go;
+	StateManeger sManeger;
 
 	private bool damageflag = false;	// ダメージをくらったかどうか
 	private float endTime = 0.8f;		// 点滅終了時間
@@ -14,18 +16,18 @@ public class Player : MonoBehaviour {
 
 	public float speed = 2;				// 移動スピード
 	public float slope = 2;				// 傾き
-
+	
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
 		playerCollider = GetComponent<BoxCollider> ();
+		go = GameObject.Find("GameSystemBox");
+		sManeger = (StateManeger)(go.GetComponent<StateManeger>());
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		// move
 		Move();
-
 		// damage
 		if (damageflag) {
 			Damage();
