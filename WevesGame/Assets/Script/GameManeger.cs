@@ -14,7 +14,7 @@ public class GameManeger : MonoBehaviour {
 		RESTART,
 		QUIT,
 	}
-	GAMESTATE state = GAMESTATE.NONE;
+	public GAMESTATE state = GAMESTATE.NONE;
 
 	void Start () {
 		state = GAMESTATE.START;
@@ -35,6 +35,7 @@ public class GameManeger : MonoBehaviour {
 			case GAMESTATE.PLAY:
 			{
 				// play
+				// クリックで挙動を変える
 				if(Input.GetMouseButton(0)){
 					state = GAMESTATE.CLEAR;
 				}else if(Input.GetMouseButton(1)){
@@ -80,8 +81,7 @@ public class GameManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				// スタート画面
-				Debug.Log("Start");
+				
 			}
 			break;
 			case GAMESTATE.PLAY:
