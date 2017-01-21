@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  slope: 2
 --- !u!124 &124396891730941496
 Behaviour:
   m_ObjectHideFlags: 1
