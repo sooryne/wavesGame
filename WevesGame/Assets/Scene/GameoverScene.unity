@@ -473,7 +473,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1344560522}
   - component: {fileID: 1344560521}
-  - component: {fileID: 1344560520}
   m_Layer: 0
   m_Name: GameSystemBox
   m_TagString: Untagged
@@ -481,18 +480,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1344560520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1344560519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e66a671c779444478606a69d1487db5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: -1
 --- !u!114 &1344560521
 MonoBehaviour:
   m_ObjectHideFlags: 0

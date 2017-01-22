@@ -15,24 +15,32 @@ public class StateManeger : MonoBehaviour {
 		RESTART,
 		QUIT,
 	}
-	public GAMESTATE state = GAMESTATE.NONE;
+	public GAMESTATE state;
 
 	void Start () {
 	}
 
 	// Update is called once per frame
 	void Update () {
-		
-		// ステート遷移＋初期化フェイズ
+		if(state == GAMESTATE.NONE){
+			if(Input.GetMouseButtonDown(0)){
+				SceneManager.LoadScene("ship test");
+				Debug.Log("MainScene loaded.");
+				state = GAMESTATE.START;
+			}
+			if(state == GAMESTATE.GAMEOVER){
+				state = GAMESTATE.QUIT;
+			}
+		}
 		switch(state){
 			case GAMESTATE.START:
 			{
-
+				state = GAMESTATE.PLAY;
 			}
 			break;
 			case GAMESTATE.PLAY:
 			{
-				// play
+				Debug.Log("Plaing.");
 			}
 			break;
 			case GAMESTATE.CLEAR:
@@ -42,7 +50,8 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
-				// Gameoverシーン
+				SceneManager.LoadScene("GameoverScene");
+				Debug.Log("GameoverScene loaded.");
 			}
 			break;
 			case GAMESTATE.RESTART:
@@ -52,43 +61,7 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.QUIT:
 			{
-				// ゲーム終了
-			}
-			break;
-		}
-		// 実行フェイズ
-		switch(state){
-			case GAMESTATE.START:
-			{
-				Debug.Log("start");
-			}
-			break;
-			case GAMESTATE.PLAY:
-			{
-				// play
-				Debug.Log("Play");
-			}
-			break;
-			case GAMESTATE.CLEAR:
-			{
-				// clearシーンの表示
-				Debug.Log("Clear");
-			}
-			break;
-			case GAMESTATE.GAMEOVER:
-			{
-				// Gameoverシーン
-				Debug.Log("Gameover");
-			}
-			break;
-			case GAMESTATE.RESTART:
-			{
-				Debug.Log("Restart");
-			}
-			break;
-			case GAMESTATE.QUIT:
-			{
-				Debug.Log("Quit");
+				Debug.Log("quit.");
 			}
 			break;
 		}
