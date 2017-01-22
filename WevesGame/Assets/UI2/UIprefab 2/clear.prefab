@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114054254924457348}
   - component: {fileID: 114480594367278276}
   m_Layer: 5
-  m_Name: 'player 1 win '
+  m_Name: clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

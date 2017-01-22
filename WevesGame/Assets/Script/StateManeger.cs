@@ -21,7 +21,7 @@ public class StateManeger : MonoBehaviour {
 
 	void Start () {
 		time = 0.0f;
-		goalTime = 10.0f;
+		goalTime = 60.0f;
 	}
 
 	// Update is called once per frame
