@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	Rigidbody rigidBody;
 	BoxCollider playerCollider;
 	GameObject go;
-	//StateManeger sManeger;
+	StateManeger sManeger;
 
 	private bool damageflag = false;	// ダメージをくらったかどうか
 	private float endTime = 0.8f;		// 点滅終了時間
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 		rigidBody = GetComponent<Rigidbody> ();
 		playerCollider = GetComponent<BoxCollider> ();
 		go = GameObject.Find("GameSystemBox");
-		//sManeger = (StateManeger)(go.GetComponent<StateManeger>());
+		sManeger = (StateManeger)(go.GetComponent<StateManeger>());
 	}
 	// Update is called once per frame
 	void Update () {
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
 		// damage
 		if (damageflag) {
 			Damage();
+			sManeger.state = StateManeger.GAMESTATE.GAMEOVER;
 		}
 	}
 
@@ -89,8 +90,8 @@ public class Player : MonoBehaviour {
 				// プレイヤーのColliderを消す
 				playerCollider.enabled = false;
 				// 岩のColliderを消す
-				var rockCollider = GameObject.FindWithTag ("Rock").GetComponent<BoxCollider> ();
-				rockCollider.enabled = false;
+				// var rockCollider = GameObject.FindWithTag ("Rock").GetComponent<BoxCollider> ();
+				// rockCollider.enabled = false;
 				// 点滅終了
 				Invoke ("FlashEnd", endTime);
 			}
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour {
 	// ダメージ
 	void Damage() {
 		flashCount++;
-		Renderer ren = gameObject.GetComponent<Renderer> ();
+		Renderer ren = GameObject.FindWithTag("Yacht").GetComponent<Renderer> ();
 		if (flashCount % 2 == 0) {
 			ren.enabled = !ren.enabled;
 		}
@@ -111,11 +112,11 @@ public class Player : MonoBehaviour {
 	// 点滅終了
 	void FlashEnd() {
 		damageflag = false;
-		gameObject.GetComponent<Renderer> ().enabled = true;
+		GameObject.FindWithTag("Yacht").GetComponent<Renderer> ().enabled = true;
 		// プレイヤーのColliderを戻す
 		playerCollider.enabled = true;
 		// 岩のColliderを戻す
-		var rockCollider = GameObject.FindWithTag ("Rock").GetComponent<BoxCollider> ();
-		rockCollider.enabled = true;
+		// var rockCollider = GameObject.FindWithTag ("Rock").GetComponent<BoxCollider> ();
+		// rockCollider.enabled = true;
 	}
 }
