@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManeger : MonoBehaviour {
+public class StateManeger : MonoBehaviour {
 
 // ステートの定義
 	public enum GAMESTATE{
@@ -15,6 +16,7 @@ public class GameManeger : MonoBehaviour {
 		QUIT,
 	}
 	public GAMESTATE state = GAMESTATE.NONE;
+	private int restartCount;
 
 	void Start () {
 		state = GAMESTATE.START;
@@ -26,49 +28,27 @@ public class GameManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				// 左クリックで開始
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.PLAY;
-				}
+
 			}
 			break;
 			case GAMESTATE.PLAY:
 			{
 				// play
-				// クリックで挙動を変える
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.CLEAR;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.GAMEOVER;
-				}
 			}
 			break;
 			case GAMESTATE.CLEAR:
 			{
 				// clearシーン
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.RESTART;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.QUIT;
-				}
 			}
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
 				// Gameoverシーン
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.RESTART;
-				}else if(Input.GetMouseButton(1)){
-					state = GAMESTATE.QUIT;
-				}
 			}
 			break;
 			case GAMESTATE.RESTART:
 			{
 				// リスタート
-				if(Input.GetMouseButton(0)){
-					state = GAMESTATE.PLAY;
-				}
 			}
 			break;
 			case GAMESTATE.QUIT:
@@ -81,7 +61,11 @@ public class GameManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				
+				if(Input.GetKeyDown(KeyCode.Space)){
+					Debug.Log("ロード");
+					SceneManager.LoadScene("ship test");
+					state = GAMESTATE.PLAY;
+				}
 			}
 			break;
 			case GAMESTATE.PLAY:
@@ -98,8 +82,13 @@ public class GameManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
-				// Gameoverシーン
 				Debug.Log("Gameover");
+				// Gameoverシーンを読み込む
+				SceneManager.LoadScene("GameoverScene");
+				if(Input.GetKeyDown(KeyCode.Space)){
+					state = GAMESTATE.RESTART;
+					restartCount++;
+				}
 			}
 			break;
 			case GAMESTATE.RESTART:
