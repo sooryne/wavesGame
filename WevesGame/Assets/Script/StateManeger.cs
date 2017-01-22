@@ -16,8 +16,12 @@ public class StateManeger : MonoBehaviour {
 		QUIT,
 	}
 	public GAMESTATE state;
+	private float time;
+	private float goalTime;
 
 	void Start () {
+		time = 0.0f;
+		goalTime = 10.0f;
 	}
 
 	// Update is called once per frame
@@ -28,9 +32,6 @@ public class StateManeger : MonoBehaviour {
 				Debug.Log("MainScene loaded.");
 				state = GAMESTATE.START;
 			}
-			if(state == GAMESTATE.GAMEOVER){
-				state = GAMESTATE.QUIT;
-			}
 		}
 		switch(state){
 			case GAMESTATE.START:
@@ -40,12 +41,20 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.PLAY:
 			{
+				time += Time.deltaTime;
+				if(time > goalTime){
+				// ゴールします
+				state = GAMESTATE.CLEAR;
+			}
 				Debug.Log("Plaing.");
+				Debug.Log(time);
 			}
 			break;
 			case GAMESTATE.CLEAR:
 			{
-				// clear
+				Debug.Log("Clear!");
+				SceneManager.LoadScene("GameoverScene");
+				Debug.Log("GameoverScene loaded.");
 			}
 			break;
 			case GAMESTATE.GAMEOVER:
