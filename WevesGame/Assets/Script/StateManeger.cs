@@ -16,23 +16,19 @@ public class StateManeger : MonoBehaviour {
 		QUIT,
 	}
 	public GAMESTATE state = GAMESTATE.NONE;
+	private int restartCount;
 
 	void Start () {
+		state = GAMESTATE.START;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if(state == GAMESTATE.NONE){
-			if(Input.GetKeyDown(KeyCode.Space)){
-			SceneManager.LoadScene("ship test");
-			state = GAMESTATE.START;
-			}
-		}
 		// ステート遷移＋初期化フェイズ
 		switch(state){
 			case GAMESTATE.START:
 			{
-			
+
 			}
 			break;
 			case GAMESTATE.PLAY:
@@ -65,7 +61,11 @@ public class StateManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				
+				if(Input.GetKeyDown(KeyCode.Space)){
+					Debug.Log("ロード");
+					SceneManager.LoadScene("ship test");
+					state = GAMESTATE.PLAY;
+				}
 			}
 			break;
 			case GAMESTATE.PLAY:
@@ -82,8 +82,13 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
+				Debug.Log("Gameover");
 				// Gameoverシーンを読み込む
 				SceneManager.LoadScene("GameoverScene");
+				if(Input.GetKeyDown(KeyCode.Space)){
+					state = GAMESTATE.RESTART;
+					restartCount++;
+				}
 			}
 			break;
 			case GAMESTATE.RESTART:
