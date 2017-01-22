@@ -22,14 +22,7 @@ public class StateManeger : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// 一度だけ実行…どのように実装しようかしら
-		if (state == GAMESTATE.NONE){
-			// if (Input.GetMouseButtonDown(0)) {
-			// 	Debug.Log("シーン読み込み");
-			// 	SceneManager.LoadScene("ship test");
-			// 	state = GAMESTATE.START;
-			// }
-		}
+		
 		// ステート遷移＋初期化フェイズ
 		switch(state){
 			case GAMESTATE.START:
