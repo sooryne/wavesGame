@@ -7,7 +7,7 @@ public class WaveColider : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        transform.DOScale(new Vector3(40f, 4f, 40f), 2f).SetEase(Ease.InOutQuad);
+        transform.DOScale(new Vector3(6f, 1f, 6f), 2f).SetEase(Ease.InOutQuad);
         Invoke("DestroyWaveColider", 3f);
     }
 	

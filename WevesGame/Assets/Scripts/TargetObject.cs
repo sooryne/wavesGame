@@ -2,6 +2,13 @@
 
 public class TargetObject : MonoBehaviour
 {
+    private Vector3 targetpos;
+
+    private void Start()
+    {
+        targetpos = transform.position;
+    } 
+
     void OnMouseDrag()
     {
         Vector3 objectPointInScreen
@@ -16,4 +23,13 @@ public class TargetObject : MonoBehaviour
         mousePointInWorld.z = this.transform.position.z;
         this.transform.position = mousePointInWorld;
     }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+
+            transform.position = new Vector3(targetpos.x, targetpos.x, targetpos.z);
+            }
+    } 
 }
