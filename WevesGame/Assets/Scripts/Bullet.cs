@@ -6,6 +6,8 @@ using DG.Tweening;
 public class Bullet : MonoBehaviour {
     private Vector3 Hitpoint;
     private GameObject target;
+    [SerializeField]
+    GameObject seManager;
 
     float hitPointx;
     float hitPointy;
@@ -18,6 +20,7 @@ public class Bullet : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        seManager = GameObject.Find("SEManager");
 
         target = GameObject.Find("Target");
         Vector3 Hitpoint = target.GetComponent<Transform>().position;
@@ -45,6 +48,7 @@ public class Bullet : MonoBehaviour {
 
     //着弾した瞬間にBulletを削除し波紋を生成する。
     void DestroyBullet() {
+        seManager.SendMessage("PlayBulletHit");
         GameObject prefab = (GameObject)Resources.Load("Prefabs/Wave");
         Instantiate(prefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
