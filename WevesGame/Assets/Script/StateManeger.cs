@@ -53,8 +53,8 @@ public class StateManeger : MonoBehaviour {
 			case GAMESTATE.CLEAR:
 			{
 				Debug.Log("Clear!");
-				SceneManager.LoadScene("GameoverScene");
-				Debug.Log("GameoverScene loaded.");
+				SceneManager.LoadScene("ClearScene");
+				Debug.Log("ClearScene loaded.");
 			}
 			break;
 			case GAMESTATE.GAMEOVER:
