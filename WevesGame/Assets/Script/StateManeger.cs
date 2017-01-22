@@ -16,14 +16,20 @@ public class StateManeger : MonoBehaviour {
 		QUIT,
 	}
 	public GAMESTATE state = GAMESTATE.NONE;
-	private int restartCount;
 
 	void Start () {
-		state = GAMESTATE.START;
 	}
 
 	// Update is called once per frame
 	void Update () {
+		// 一度だけ実行…どのように実装しようかしら
+		if (state == GAMESTATE.NONE){
+			// if (Input.GetMouseButtonDown(0)) {
+			// 	Debug.Log("シーン読み込み");
+			// 	SceneManager.LoadScene("ship test");
+			// 	state = GAMESTATE.START;
+			// }
+		}
 		// ステート遷移＋初期化フェイズ
 		switch(state){
 			case GAMESTATE.START:
@@ -38,7 +44,7 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.CLEAR:
 			{
-				// clearシーン
+				// clear
 			}
 			break;
 			case GAMESTATE.GAMEOVER:
@@ -61,11 +67,7 @@ public class StateManeger : MonoBehaviour {
 		switch(state){
 			case GAMESTATE.START:
 			{
-				if(Input.GetKeyDown(KeyCode.Space)){
-					Debug.Log("ロード");
-					SceneManager.LoadScene("ship test");
-					state = GAMESTATE.PLAY;
-				}
+				Debug.Log("start");
 			}
 			break;
 			case GAMESTATE.PLAY:
@@ -82,13 +84,8 @@ public class StateManeger : MonoBehaviour {
 			break;
 			case GAMESTATE.GAMEOVER:
 			{
+				// Gameoverシーン
 				Debug.Log("Gameover");
-				// Gameoverシーンを読み込む
-				SceneManager.LoadScene("GameoverScene");
-				if(Input.GetKeyDown(KeyCode.Space)){
-					state = GAMESTATE.RESTART;
-					restartCount++;
-				}
 			}
 			break;
 			case GAMESTATE.RESTART:
