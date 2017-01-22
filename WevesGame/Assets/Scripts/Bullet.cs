@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour {
         Debug.Log(Hitpoint.x);
 
         //取得したhitpointの座標に2秒間かけて弾を移動
-        gameObject.GetComponent<Transform>().DOMove(new Vector3 (Hitpoint.x, Hitpoint.y, Hitpoint.z), 2f);
+        gameObject.GetComponent<Transform>().DOMove(new Vector3 (Hitpoint.x, Hitpoint.y, Hitpoint.z), 3f);
 
 
     }
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour {
     void Update () {
 
         //水面に着弾した瞬間(=Yが０になった瞬間)の判定。
-        if (this.transform.position.y > -0.5f && this.transform.position.y < 0.5f) {
+        if (this.transform.position.y > 0.5f && this.transform.position.y < 10.5f) {
             //着弾する瞬間に弾を削除する。
             Invoke("DestroyBullet", 0.1f);
 

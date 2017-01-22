@@ -25,7 +25,7 @@ public class BulletMaker : MonoBehaviour {
         if (Input.GetMouseButton(0))
         {
             //左ボタンが離れるタイミングを取得
-            if (Input.GetMouseButton(1) && isReady == true)
+            if (Input.GetMouseButtonUp(1) && isReady == true)
             {
                 isReady = false;
 
@@ -35,6 +35,8 @@ public class BulletMaker : MonoBehaviour {
                 //離れたら弾のprefabを取得して生成
                 GameObject prefab = (GameObject)Resources.Load("Prefabs/cannonball");
                 Instantiate(prefab, bulletPosition, Quaternion.identity);
+
+                Debug.Log("cannontest");
 
                 Invoke("StandBy" , 1.5f);
             }
