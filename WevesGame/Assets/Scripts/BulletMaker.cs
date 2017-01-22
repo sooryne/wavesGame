@@ -8,14 +8,15 @@ public class BulletMaker : MonoBehaviour {
     private Vector3 bulletPosition;
     [SerializeField]float speed;
     private bool isReady;
-
+    [SerializeField]GameObject seManager;
 
 
     // Use this for initialization
     void Start () {
         isReady = true;
-		
-	}
+        //seManager = GameObject.Find("SEManager");
+
+    }
 
 
 
@@ -35,6 +36,10 @@ public class BulletMaker : MonoBehaviour {
                 //離れたら弾のprefabを取得して生成
                 GameObject prefab = (GameObject)Resources.Load("Prefabs/cannonball");
                 Instantiate(prefab, bulletPosition, Quaternion.identity);
+                
+                
+                seManager.SendMessage("PlayCannon");
+
 
                 Debug.Log("cannontest");
 
