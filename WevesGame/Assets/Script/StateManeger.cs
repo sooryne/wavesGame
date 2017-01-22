@@ -27,7 +27,7 @@ public class StateManeger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(state == GAMESTATE.NONE){
-			if(Input.GetMouseButtonDown(0)){
+			if(Input.GetKeyDown(KeyCode.Space)){
 				SceneManager.LoadScene("ship test");
 				Debug.Log("MainScene loaded.");
 				state = GAMESTATE.START;
